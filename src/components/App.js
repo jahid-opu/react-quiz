@@ -13,6 +13,8 @@ import {
   Link,
 } from "react-router-dom";
 import { AuthProvider } from "../contexts/AuthContext";
+import PrivateRoute from "./PrivateRoute";
+import PrivateOutlet from "./PrivateOutlet";
 
 function App() {
   return (
@@ -25,9 +27,28 @@ function App() {
 
             <Route path="/login" element={<Login />} />
 
-            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/*" element={<PrivateOutlet />}>
+              <Route path="quiz" element={<Quiz />} />
+              <Route path="result" element={<Result />} />
+            </Route>
+            {/* 
+            <Route
+              path="/quiz"
+              element={
+                <PrivateRoute>
+                  <Quiz />
+                </PrivateRoute>
+              }
+            />
 
-            <Route path="/result" element={<Result />} />
+            <Route
+              path="/result"
+              element={
+                <PrivateRoute>
+                  <Result />
+                </PrivateRoute>
+              }
+            /> */}
           </Routes>
         </Layout>
       </AuthProvider>
