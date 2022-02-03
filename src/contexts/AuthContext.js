@@ -24,13 +24,13 @@ export function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
-
-      return unsubscribe;
     });
+
+    return unsubscribe;
   }, []);
 
   //   Sign up function
-  const signup = async (email, password, userName) => {
+  async function signup(email, password, userName) {
     const auth = getAuth();
     await createUserWithEmailAndPassword(auth, email, password);
 
@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
     setCurrentUser({
       ...user,
     });
-  };
+  }
 
   //   Login function
   const login = (email, password) => {
