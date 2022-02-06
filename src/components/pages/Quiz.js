@@ -63,7 +63,7 @@ const Quiz = () => {
   // handle when user clicks the prev button to get back to the previous question
   const prevQuestion = () => {
     if (currentQuestion >= 1 && currentQuestion <= questions.length) {
-      setCurrentQuestion((prevCurrent) => prevCurrent + 1);
+      setCurrentQuestion((prevCurrent) => prevCurrent - 1);
     }
   };
 
@@ -75,12 +75,7 @@ const Quiz = () => {
     await set(resultRef, {
       [id]: qna,
     });
-    navigate({
-      pathname: `/result/${id}`,
-      state: {
-        qna,
-      },
-    });
+    navigate(`/result/${id}`, { state: qna });
   }
 
   // calculate percentage of progress
@@ -95,6 +90,7 @@ const Quiz = () => {
           <h1>{qna[currentQuestion].title}</h1>
           <h4>Question can have multiple answers</h4>
           <Answers
+            input
             options={qna[currentQuestion].options}
             handleChange={handleAnswerChange}
           />
