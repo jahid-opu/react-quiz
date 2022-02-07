@@ -10,8 +10,6 @@ const Result = () => {
   const { state: qna } = useLocation();
 
   const { loading, error, answers } = useAnswers(id);
-  console.log(answers);
-  console.log("qna state:", qna);
 
   const calculate = () => {
     let score = 0;
